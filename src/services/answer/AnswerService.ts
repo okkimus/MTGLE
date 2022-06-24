@@ -14,18 +14,32 @@ const AnswerService: IAnswerService = {
             letters: [],
         }
 
-        for (const l of guess) {
-            const letterIndex = correct.indexOf(l, letterTracker.getLastIndex(l)+ 1);
-            const isInWord = letterIndex !== -1;
-            const isInCorrectPosition = isInWord;
-            const letterResult: LetterResult = {
-                index: 0,
-                letter: l,
-                isInWord: isInWord,
-                isInCorrectPosition: isInWord,
+        const splitGuess = guess.split("");
+
+        // First go through and set all the letters in correct places
+        splitGuess.forEach((l, i) => {
+            const inCorrectPosition = l === correct[i];
+
+            if (inCorrectPosition) {
+                letterTracker.hasLeft(l);
             }
-            result.letters.push(letterResult);
-        }
+            result.letters.push({
+                index: i,
+                letter: l,
+                isInCorrectPosition: inCorrectPosition,
+                isInWord: inCorrectPosition,
+            })
+        })
+
+        // Second go through and set correct letters but in wrong place
+        splitGuess.forEach((l, i) => {
+            const inCorrectPosition = l === correct[i];
+
+            if (!inCorrectPosition && letterTracker.hasLeft(l)) {
+                result.letters[i].isInWord = true;
+            }
+        })
+
         return result;
     }
 }

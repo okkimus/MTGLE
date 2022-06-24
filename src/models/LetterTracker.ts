@@ -1,36 +1,39 @@
-interface LastIndices {
+interface LetterCounts {
     [key: string]: number
 }
 
 class LetterTracker implements ILetterTracker {
-    lastIndices: LastIndices;
+    letterCounts: LetterCounts;
     target: string;
 
     constructor(target: string) {
         this.target = target;
 
-        this.lastIndices = {};
+        this.letterCounts = {};
         for (const l of target) {
-            this.lastIndices[l] = -1;
+            if (!this.letterCounts[l]) {
+                this.letterCounts[l] = 1
+            } else {
+                this.letterCounts[l] += 1
+            }
         }
     }
 
-    getLastIndex(letter: string): number {
-        const lastIndex = this.lastIndices[letter];
-        const newIndex = this.target.indexOf(letter, lastIndex + 1);
+    hasLeft(letter: string): boolean {
+        if (this.letterCounts[letter]) {
+            this.letterCounts[letter] -= 1;
+            return true;
+        }
 
-
-        this.lastIndices[letter] = newIndex;
-
-        return lastIndex;
+        return false;
     }
 }
 
 interface ILetterTracker {
-    lastIndices: any,
+    letterCounts: any,
     target: string,
 
-    getLastIndex: (letter: string) => number;
+    hasLeft: (letter: string) => boolean;
 }
 
 export default LetterTracker;

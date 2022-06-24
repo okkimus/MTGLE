@@ -1,49 +1,45 @@
 import LetterTracker from "../../../models/LetterTracker";
 
-test('gives -1 for not seen letter', () => {
-    const targetWord = "pineapple"
+test('returns true if letter is left', () => {
+    const targetWord = "swamp"
     const sut = new LetterTracker(targetWord);
 
-    const expected = -1
-    const index = sut.getLastIndex("p")
+    const actual = sut.hasLeft("p")
 
-    expect(index).toBe(expected);
+    expect(actual).toBeTruthy();
 });
 
-test('gives correct index for seen letter', () => {
+test('returns true if letter is left when one is found', () => {
     const targetWord = "pineapple"
     const sut = new LetterTracker(targetWord);
 
-    const expected = 3;
-    const letter = "e";
-    sut.getLastIndex(letter)
-    const index = sut.getLastIndex(letter)
+    const letter = "p";
+    sut.hasLeft(letter);
+    const actual = sut.hasLeft(letter)
 
-    expect(index).toBe(expected);
+    expect(actual).toBeTruthy();
 });
 
-test('gives -1 for letter not in word', () => {
+test('returns false for letter not in word', () => {
     const targetWord = "pineapple"
     const sut = new LetterTracker(targetWord);
 
-    const expected = -1;
     const letter = "x";
-    sut.getLastIndex(letter)
-    const index = sut.getLastIndex(letter)
+    const actual = sut.hasLeft(letter)
 
-    expect(index).toBe(expected);
+    expect(actual).toBeFalsy();
 });
 
 
-test('gives correct index for letter seen times before', () => {
-    const targetWord = "abaabaaabaa"
+test('returns false when letter is seen more times than it exists', () => {
+    const targetWord = "pineapple"
     const sut = new LetterTracker(targetWord);
 
-    const expected = 4;
-    const letter = "b";
-    sut.getLastIndex(letter)
-    sut.getLastIndex(letter)
-    const index = sut.getLastIndex(letter)
+    const letter = "p";
+    sut.hasLeft(letter)
+    sut.hasLeft(letter)
+    sut.hasLeft(letter)
+    const hasFourthLetter = sut.hasLeft(letter)
 
-    expect(index).toBe(expected);
+    expect(hasFourthLetter).toBeFalsy();
 });
