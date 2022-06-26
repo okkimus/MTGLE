@@ -1,0 +1,4 @@
+const MAX_GUESSES = 5;
+const WORD_LENGTH = 5;
+
+export { MAX_GUESSES, WORD_LENGTH };
