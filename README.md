@@ -26,3 +26,17 @@ Created with create-react-app
 3. Run the project `npm run start` or `yarn start`
 4. To run tests run `npm run test` or `yarn test`
 
+### Todo:
+
+- Logic
+- [ ] create services to aid with game logic
+    - [ ] word service
+    - [ ] ...
+- [ ] wire all services together
+- [ ] make everything testable
+
+
+- Frontend
+- [ ] create functional UI
+- [ ] tweak UI so it doesn't hurt eyes
+- [ ] add MTG theme
