@@ -1,12 +1,12 @@
 import react, { ChangeEvent, useState } from 'react';
 
-interface InputerProps {
+interface InputterProps {
     maxLength: number,
     onSubmit: (value: string) => void,
     disabled: boolean
 }
 
-const Inputer = ({ maxLength, onSubmit, disabled }: InputerProps) => {
+const Inputter = ({ maxLength, onSubmit, disabled }: InputterProps) => {
     const [value, setValue] = useState("");
 
     const handleChange = (e: react.ChangeEvent<HTMLInputElement>) => {
@@ -31,4 +31,4 @@ const Inputer = ({ maxLength, onSubmit, disabled }: InputerProps) => {
         disabled={disabled} />
 }
 
-export default Inputer;
+export default Inputter;

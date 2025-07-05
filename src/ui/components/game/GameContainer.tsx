@@ -1,5 +1,5 @@
 import react, { useState } from 'react'
-import Inputer from '../shared/Inputer';
+import Inputter from '../shared/Inputter';
 
 const MAX_GUESSES = 6;
 
@@ -24,7 +24,7 @@ const GameContainer = () => {
                 </ul>
             </div>
 
-            <Inputer
+            <Inputter
                 maxLength={5}
                 onSubmit={guess => addGuess(guess)}
                 disabled={guesses.length === MAX_GUESSES}/>
