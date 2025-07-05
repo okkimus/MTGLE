@@ -57,7 +57,7 @@ test('prioritize correct places if non-correct place comes before', () => {
     expect(checkLetterResults(letterResults, expectedInWordCorrectness, expectedInPlaceCorrectness)).toBeTruthy();
 });
 
-test('prioritize correct places if many non-correct places comes before', () => {
+test('prioritize correct places if many non-correct places come before', () => {
     const correct = 'aabbb';
     const guess = 'bbabb';
 
