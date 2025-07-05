@@ -1,7 +1,6 @@
 import react, { useState } from 'react'
 import Inputter from '../shared/Inputter';
-
-const MAX_GUESSES = 6;
+import { MAX_GUESSES } from '../../../models/constants/GameSettings';
 
 const GameContainer = () => {
     const [guesses, setGuesses] = useState<string[]>([]);

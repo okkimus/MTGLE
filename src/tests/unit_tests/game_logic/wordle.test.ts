@@ -37,6 +37,15 @@ test('sets game state to won if last guess is correct', () => {
     expect(newState.isWon).toBeTruthy();
 });
 
+test('is case insensitive when checking win condition', () => {
+    const CORRECT = 'SWAMP';
+    const state = new GameState(CORRECT, 5);
+    const sut = new Wordle();
+
+    const newState = sut.addGuess(state, CORRECT.toLowerCase());
+    expect(newState.isWon).toBeTruthy();
+});
+
 test('returns correct count for guesses left', () => {
     const CORRECT = "TESTS";
     const state = new GameState(CORRECT, 5);
