@@ -10,12 +10,14 @@ test('returns word in lowercase', () => {
     expect(formatWord(word)).toBe(expected);
 });
 
-test('throws error if word contains other than alphabetical characters', () => {
-    testThrow("Hello#");
-    // testThrow("He!loo");
-    // testThrow("He$lo");
-    // testThrow("Hell%");
-    // testThrow("'ello");
+test.each([
+    "Hello#",
+    "He!loo",
+    "He$lo",
+    "Hell%",
+    "'ello",
+])('throws error if word contains other than alphabetical characters', (word) => {
+    testThrow(word);
 });
 
 const testThrow = (word) => {
